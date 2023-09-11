@@ -7,7 +7,7 @@ $ServerName = "KRB_AS_PROBING_E"
 $username_b = [System.Text.Encoding]::UTF8.GetBytes($username)
 $NetbiosDom_b = [System.Text.Encoding]::UTF8.GetBytes($NetbiosDomainName)
 
-Write-Output "[+] Crafting KRB_AS_REQ ping for $NetbiosDomainName)\$username"
+Write-Output "[+] Crafting KRB_AS_REQ ping for $NetbiosDomainName\$username"
 $AS_REQ  = 0x00, 0x00, 0x00, ( 0xC4 + $username_b.Length + $NetbiosDom_b.Length * 2 )
 $AS_REQ += 0x6A, 0x81, (0xC1 + $username_b.Length + $NetbiosDom_b.Length * 2)
 $AS_REQ += 0x30, 0x81, (0xBE + $username_b.Length + $NetbiosDom_b.Length * 2)
