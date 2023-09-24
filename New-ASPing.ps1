@@ -1,6 +1,11 @@
-$DCIp = "10.0.0.4" #Use the IP address of the domain controller
-$username = "q" #Use the samaccount name of the user account
-$NetbiosDomainName = "P" #Use the domain name
+param(
+    $DCIp,
+    $username,
+    $NetbiosDomainName
+)
+#$DCIp = "10.0.0.4" #Use the IP address of the domain controller
+#$username = "q" #Use the samaccount name of the user account
+#$NetbiosDomainName = "P" #Use the domain name
 
 # Don't change stuff after this...
 $ServerName = "KRB_AS_PROBING_E"
@@ -47,7 +52,7 @@ try {
 }
 catch {
     Write-Output "[-] Cannot send the request to $DCIp"
-    break
+    return
 }
 $buffer = New-Object byte[] 1024  # Adjust the buffer size as needed
 $responseLength = $stream.Read($buffer, 0, $buffer.Length)
@@ -68,7 +73,7 @@ if ( $AS_REP[15] -eq 30 )
         0x44 { $message = "KDC_ERR_WRONG_REALM" }
     }
     Write-Output "[-] 0x$($AS_REP[15].ToString("X")) - $message"
-    break
+    return
 }
 
 $Etype1 = $AS_REP[99 + $NetbiosDom_b.Length * 2]
