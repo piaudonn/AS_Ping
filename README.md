@@ -33,7 +33,7 @@ If the account doesn't have an AES key, and only an RC4 key, the output will be:
 ## What the #$% is the script doing?
 
 There are plenty of pretty cool tools to manipulate Kerberos at the raw level. Unfortunately, most of them are considered "hacking" tool by antivirus software. So, I decided to send the data direction using a TCP socket.
-I originally built an ASN library in PowerShell tool (without .Net import, pure PowerShell) but I figured since the message we send and the message we parse are predictable in length and structure, I decided not to use it in the final code.
+I originally built an ASN library in PowerShell too (without .Net import, pure PowerShell) but I figured since the message we send and the message we parse are predictable in length and structure, I decided not to use it in the final code.
 
 ## Will my security team see what I am doing?
 
